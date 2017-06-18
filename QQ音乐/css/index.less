@@ -1,0 +1,218 @@
+@import "reset";
+@import (reference) "public";
+//@import 导入外部文件
+//@import（once):只包含文件一次(默认)
+//@import(reference) 导入外部样式，但是不添加导入的样式到编译输出中
+//@import(inline) 在输出中包含源文件但不加工它
+//@import(less) 将该文件视为less文件，无论其扩展名为什么
+//@import(css)  将文件视为css文件，无论扩展名为什么
+//@import(multiple) 该文件可以多次导入
+html {
+    font-size: 100px;
+}
+
+html,
+body,
+#music {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+//music
+#music {
+    position: relative;
+    .musicBg {
+        position: absolute;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        background: url(../img/poster.jpg) no-repeat;
+        background-size: cover;
+        filter: blur(10px);
+        -webkit-filter: blur(10px);
+    }
+    .musicBgMask {
+        .musicBg;
+        z-index: -1;
+        background: rgba(0, 0, 0, .6);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+    }
+    #musicAudio {
+        display: none;
+    }
+}
+
+//header
+.header {
+    @H: 1.2rem;
+    position: relative;
+    padding: .3rem;
+    background: rgba(0, 0, 0, .1);
+    .baseInfo {
+        width: 4.5rem;
+        height: @H;
+        img {
+            vertical-align: top;
+            width: @H;
+            height: @H;
+        }
+        div {
+            display: inline-block;
+            vertical-align: top;
+            h1,
+            p {
+                height: unit(unit(@H)/2, rem);
+                line-height: unit(unit(@H)/2, rem);
+                font-size: .36rem;
+                color: @color-white;
+                font-weight: normal;
+            }
+        }
+    }
+    .musicBtn {
+        position: absolute;
+        width: .86rem;
+        height: .86rem;
+        border: .02px solid @color-white;
+        border-radius: 50%;
+        top: 50%;
+        margin-top: -.43rem;
+        right: .3rem;
+        &.play {
+            &:after {
+                display: block;
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                font-size: 0;
+                border: .2rem solid transparent;
+                border-left-color: @color-white;
+                margin-top: -.2rem;
+                margin-left: -.05rem;
+            }
+        }
+        &.pause {
+            display: none;
+            &:after {
+                display: block;
+                content: "||";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: .4rem;
+                height: .4rem;
+                margin: -.2rem 0 0 -.18rem;
+                line-height: .4rem;
+                text-align: center;
+                font-size: .3rem;
+                color: @color-white;
+                letter-spacing: 3px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.main {
+    position: relative;
+    margin: .4rem .2rem;
+    height: 5.2rem;
+    overflow: hidden;
+    .lyric {
+        position: absolute;
+        width: 100%;
+        .transition(@duration: .5s);
+        p {
+            line-height: .84rem;
+            text-align: center;
+            font-size: .32rem;
+            color: @color-gray;
+            &.bg {
+                color: @color-green;
+            }
+        }
+    }
+}
+
+.footer {
+    margin: 0 .2rem;
+    height: 3rem;
+    .like {
+        height: .8rem;
+        a {
+            display: block;
+            float: right;
+            width: .5rem;
+            height: .42rem;
+            margin-top: .19rem;
+            background: url(../img/sprite_play.png) no-repeat 0 0;
+            background-size: .8rem 7rem;
+        }
+    }
+    .progress {
+        height: .8rem;
+        line-height: .8rem;
+        .current,
+        .duration {
+            width: .9rem;
+            height: 100%;
+            font-size: .24rem;
+            color: @color-gray;
+            text-align: center;
+            float: left;
+        }
+        .timeLine {
+            position: relative;
+            float: left;
+            width: 4.2rem;
+            height: .04rem;
+            background-color: @color-gray;
+            margin-top: .38rem;
+            span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 100%;
+                background-color: @color-green;
+                .transition;
+            }
+        }
+    }
+}
+
+.downLoad {
+    height: .9rem;
+    a {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        width: 4.4rem;
+        height: .9rem;
+        line-height: .9rem;
+        text-align: center;
+        font-size: .4rem;
+        background-color: @color-green;
+        color: @color-white;
+        border-radius: .9rem;
+        letter-spacing: 3px;
+        &:before {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: .12rem;
+            width: .66rem;
+            height: .66rem;
+            margin-top: -.33rem;
+            border-radius: 50%;
+            background: url(../img/sprite_play.png) no-repeat 0 -6rem;
+            background-size: .8rem 7rem;
+        }
+    }
+}

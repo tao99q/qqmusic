@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<title>QQMusic</title>
+		<!--import needed css-->
+		<link rel="stylesheet/less" href="css/index.less" />
+		<script src="js/less-2.5.3.min.js"></script>
+
+	</head>
+
+	<body>
+		<section id="music">
+			<!--music&backgroundImg-->
+			<div class="musicBg">
+
+			</div>
+			<div class="musicBgMask">
+
+			</div>
+			<audio id="musicAudio" src="img/demo.m4a" preload="none" ></audio>
+			<header class="header">
+				<div class="baseInfo">
+					<img src="img/poster.jpg" />
+					<div id="">
+						<h1>模特</h1>
+						<p>李荣浩</p>
+					</div>
+				</div>
+				<a href="javascript:;" class="musicBtn play"></a>
+				<a href="javascript:;" class="musicBtn pause"></a>
+			</header>
+			<main class="main">
+				<div class="lyric">
+
+				</div>
+			</main>
+			<footer class="footer">
+				<div class="like">
+					<a href="javascript:;"></a>
+				</div>
+				<div class="progress">
+					<div class="current">00:00</div>
+					<div class="timeLine"><span></span></div>
+					<div class="duration">00:00</div>
+				</div>
+				<div class="downLoad">
+					<a href="javascript:;">下载这首歌</a>
+				</div>
+			</footer>
+		</section>
+
+		<!--import needed js-->
+		<script src="js/zepto.min.js"></script>
+		<script src="js/index.js"></script>
+		<!--<script src="分析/解析字符串.js" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+
+</html>

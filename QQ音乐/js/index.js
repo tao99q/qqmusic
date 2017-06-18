@@ -135,10 +135,7 @@ var controlRender = (function() {
 	//	$timeLine.on('touchstart', function(e) {
 	//		var totalLength = $(this).offset().width
 	//		var curLength = (e.changedTouches[0].clientX - $timeLine.offset().left) / $timeLine.offset().width;
-	//		musicAudio.pause();
-	//		musicAudio.src = musicAudio.src;
 	//		musicAudio.currentTime = curLength * duration;
-	//		musicAudio.play();
 	//		var $pList = $lyric.children("p");
 	//		step = Math.floor($pList.length * curLength);
 	//	});

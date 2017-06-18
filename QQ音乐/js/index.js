@@ -62,8 +62,6 @@ var controlRender = (function() {
 		$musicAudio.on("canplay", function() {
 			$musicPause.show();
 			$musicPlay.hide();
-			//			$musicPlay.css("display", "none");
-			//			$musicPause.css("display", "block");
 			//计算声音总时间 单位 秒
 			duration = musicAudio.duration;
 			var m = Math.floor(duration / 60);
@@ -83,17 +81,13 @@ var controlRender = (function() {
 				$musicPause.show();
 				$musicPlay.hide();
 				lyricSync();
-				//				$musicPlay.css("display", "none");
-				//				$musicPause.css("display", "block");
 			} else {
 				musicAudio.pause();
 				$musicPause.hide();
 				$musicPlay.show();
-				window.clearInterval(timer);
-				//				$musicPlay.css("display", "block");
-				//				$musicPause.css("display", "none");
+				//				window.clearInterval(timer);
 			}
-		})
+		});
 	}
 	$musicPlain.add(playPause);
 
@@ -107,8 +101,9 @@ var controlRender = (function() {
 			var s = addZero(Math.floor(currentTime - m * 60));
 			//显示当前播放时间
 			$current.html(m + ":" + s);
+			
 			//播放完成 按钮重置
-			if(currentTime >= duration) {
+			if(musicAudio.ended) {
 				window.clearInterval(timer);
 				$musicPause.hide();
 				$musicPlay.show();
@@ -125,7 +120,8 @@ var controlRender = (function() {
 				var ps = $(this).attr("s");
 
 				if(m == pm && s == ps) {
-					step++;
+					var id = $(this).attr("id");
+					step = /\d+/.exec(id);
 					if(step >= 4) {
 						$lyric.css("top", -(step - 3) * 0.84 + "rem");
 					}
@@ -136,16 +132,30 @@ var controlRender = (function() {
 		}, 1000);
 	}
 	$musicPlain.add(lyricSync);
-	if('fastSeek' in musicAudio) {
-		musicAudio.fastSeek(100); //改变audio.currentTime的值
-	}
-	$timeLine.on('touchstart', function(event) {
-		console.log(event.changedTouches[0].clientX);
-		var left = $timeLine.offset().left;
-		var itemWidth = (event.changedTouches[0].clientX - left) / $timeLine[0].offsetWidth * 100;
-		musicAudio.currentTime = 100; //itemWidth / 100 * duration;
+	//	$timeLine.on('touchstart', function(e) {
+	//		var totalLength = $(this).offset().width
+	//		var curLength = (e.changedTouches[0].clientX - $timeLine.offset().left) / $timeLine.offset().width;
+	//		musicAudio.pause();
+	//		musicAudio.src = musicAudio.src;
+	//		musicAudio.currentTime = curLength * duration;
+	//		musicAudio.play();
+	//		var $pList = $lyric.children("p");
+	//		step = Math.floor($pList.length * curLength);
+	//	});
+	$timeLine.click(function(e) {
+		var totalLength = $(this).offset().width
+		var curLength = (e.pageX - $timeLine.offset().left) / $timeLine.offset().width;
+		//		musicAudio.pause();
+		//		musicAudio.src = musicAudio.src;
+		musicAudio.currentTime = curLength * duration;
+		//		musicAudio.play();
 		var $pList = $lyric.children("p");
-		step = Math.floor($pList.length * itemWidth / 100);
+		step = Math.floor($pList.length * curLength);
+		$timeLineItem.css({
+
+		width: curLength* 100 + "%"
+		});
+
 	});
 	//绑定歌词数据
 	function bindHTML(dataAry) {

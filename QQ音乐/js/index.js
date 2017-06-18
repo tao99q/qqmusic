@@ -129,7 +129,7 @@ var controlRender = (function() {
 				}
 
 			});
-		}, 1000);
+		}, 300);
 	}
 	$musicPlain.add(lyricSync);
 	//	$timeLine.on('touchstart', function(e) {

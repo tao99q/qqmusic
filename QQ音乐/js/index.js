@@ -101,7 +101,7 @@ var controlRender = (function() {
 			var s = addZero(Math.floor(currentTime - m * 60));
 			//显示当前播放时间
 			$current.html(m + ":" + s);
-			
+
 			//播放完成 按钮重置
 			if(musicAudio.ended) {
 				window.clearInterval(timer);
@@ -152,8 +152,8 @@ var controlRender = (function() {
 		var $pList = $lyric.children("p");
 		step = Math.floor($pList.length * curLength);
 		$timeLineItem.css({
-
-		width: curLength* 100 + "%"
+			transition: ".5s",
+			width: curLength * 100 + "%"
 		});
 
 	});
